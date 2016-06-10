@@ -1,0 +1,41 @@
+.personContainer {
+	border: 2px solid black;
+	margin: 10px;
+	padding: 10px;
+}
+
+
+
+.personName {
+	font-weight: bold;
+	font-size: 1.5rem;
+}
+
+.personTitle {
+	font-style: italic;
+
+}
+
+.photo {
+	width: 200px;
+	height: 200px;
+}
+
+
+.bio {
+	color: #444;
+
+}
+
+
+.lifespan {
+	font-style: italic;
+}
+
+
+
+
+
+/*5. For every even numbered element, have a light yellow background.
+
+6. For every odd numbered element, have a light blue background.*/
