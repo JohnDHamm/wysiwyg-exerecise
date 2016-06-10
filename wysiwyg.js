@@ -1,5 +1,3 @@
-// 1. Create an array of objects that represents famous people (see structure below).
-
 var famousPeople =[
 	{
 	  title: "Samurai",
@@ -70,42 +68,46 @@ function replaceText() {
 	// body...
 }
 
+function selectTextToChange() {
+	var selectedEl = event.target.id
+	console.log("", selectedEl);
+}
 
 
 
-
-// loop through array
-	// 1. create div
-	// 	a. header - name div + title div
-	// 	b. section - bio div
+// create the person cards from array
 
 for (i = 0; i < famousPeople.length; i++) {
 	var newDiv = `
 		<div id="personContainer-${i}" class="personContainer">
-			<header id="-${i}">
-				<div id="personName-${i}" class="personName">${famousPeople[i].name}</div>
-				<div id="personTitle-${i}" class="personTitle">${famousPeople[i].title}</div>
-			</header>
-			<section id="-${i}">
-				<div id="photo-${i}"><img src="${famousPeople[i].image}" class="photo"></div>
-				<div id="bio-${i}" class="bio">${famousPeople[i].bio}</div>
-			</section>
-			<footer id="lifespan-${i}" class="lifespan">born: ${famousPeople[i].lifespan.birth}   died: ${famousPeople[i].lifespan.death}</footer>`
+			<h1 id="personName-${i}" class="personName">${famousPeople[i].name}</h1>
+			<h3 id="personTitle-${i}" class="personTitle">${famousPeople[i].title}</h3>
+
+
+			<div id="photo-${i}"><img src="${famousPeople[i].image}" class="photo"></div>
+			<p id="bio-${i}" class="bio">${famousPeople[i].bio}</p>
+
+			<footer id="lifespan-${i}" class="lifespan">born: <span class="year">${famousPeople[i].lifespan.birth}</span>      died: <span class="year">${famousPeople[i].lifespan.death}</span></footer>
+			</div>`
 
 	outputEl.innerHTML += newDiv;
+};
 
+
+// add event listeners to person containers
+for (i = 0; i < famousPeople.length; i++) {
+	var cards = document.getElementsByClassName("personContainer");
+	cards[i].addEventListener("click", selectTextToChange);
 };
 
 
 
-// 4. Create a DOM element for each of the objects inside the container. Style your person elements however you like.
 
-// 7. Each element's DOM structure should be as shown below.
-// 	<person>
-// 	  <header>Name and title go here</header>
-// 	  <section>Bio and image go here</section>
-// 	  <footer>Lifespan info goes here</footer>
-// 	</person>
+
+
+
+
+
 
 // 8. When you click on one of the person elements, a dotted border should appear around it.
 
