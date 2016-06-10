@@ -59,21 +59,35 @@ var textInput = document.getElementById('userInput');
 textInput.addEventListener('keypress', function (e) {
     var key = e.keyCode;
     if (key === 13) { // 13 is enter
-    	replaceText();// code for enter
+    	finishTextChange();// code for enter
     }
 });
 
 
-function replaceText() {
+
+function finishTextChange() {
 	// body...
 }
 
-function selectTextToChange() {
-	var selectedEl = event.target.id
-	console.log("", selectedEl);
+
+function changeText() {
+	// 8. When you click on one of the person elements, a dotted border should appear around it.
+	var selectedEl = event.target
+	selectedEl.classList.toggle("selectedBorder");
+
+// 9. When you click on one of the person elements, the text input should immediately gain focus so that you can start typing.
+	textInput.focus();
+// 10. When there is a highlighted person element, and you begin typing in the input box, the person's biography should be immediately bound to what you are typing, letter by letter.
+	liveUpdate(selectedEl);
 }
 
 
+function liveUpdate(element) {
+	textInput.addEventListener('keyup', function(){
+			element.innerHTML = textInput.value;
+	});
+
+}
 
 // create the person cards from array
 
@@ -87,17 +101,18 @@ for (i = 0; i < famousPeople.length; i++) {
 			<div id="photo-${i}"><img src="${famousPeople[i].image}" class="photo"></div>
 			<p id="bio-${i}" class="bio">${famousPeople[i].bio}</p>
 
-			<footer id="lifespan-${i}" class="lifespan">born: <span class="year">${famousPeople[i].lifespan.birth}</span>      died: <span class="year">${famousPeople[i].lifespan.death}</span></footer>
+			<span class="notEditable">born:  </span><p id="yearBorn-${i}" class="year">${famousPeople[i].lifespan.birth}</p>
+			<span class="notEditable">died:  </span><p id="yearBorn-${i}" class="year">${famousPeople[i].lifespan.death}</p>
 			</div>`
 
 	outputEl.innerHTML += newDiv;
 };
 
 
-// add event listeners to person containers
+// add event listeners to person containers (encompassing div)
 for (i = 0; i < famousPeople.length; i++) {
 	var cards = document.getElementsByClassName("personContainer");
-	cards[i].addEventListener("click", selectTextToChange);
+	cards[i].addEventListener("click", changeText);
 };
 
 
@@ -109,11 +124,8 @@ for (i = 0; i < famousPeople.length; i++) {
 
 
 
-// 8. When you click on one of the person elements, a dotted border should appear around it.
 
-// 9. When you click on one of the person elements, the text input should immediately gain focus so that you can start typing.
 
-// 10. When there is a highlighted person element, and you begin typing in the input box, the person's biography should be immediately bound to what you are typing, letter by letter.
 
 // 11. When you press the enter/return key when typing in the input field, then the content of the input field should immediately be blank.
 

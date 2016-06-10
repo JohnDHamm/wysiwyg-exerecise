@@ -33,5 +33,17 @@
 
 
 .year {
+	display: inline;
 	color: blue;
 	font-style: normal;
+}
+
+.notEditable {
+	color: grey;
+	font-style: italic;
+}
+
+
+.selectedBorder {
+	border: 1px dotted red;
+}
